@@ -118,8 +118,12 @@ class SimpleTable {
             $attr .= ' style="' . $style . '"';
         }
 
+        if (' ' === $column[0]) { // 先頭のスペースは１つだけ取り除く(体裁のため)
+            $column = substr($column, 1);
+        }
+
         return '<' . $opts['tag'] . $attr . '>'
-            . str_replace(' ', '&nbsp;', $column)
+            . str_replace(' ', '&nbsp;', rtrim($column))
             . '</' . $opts['tag'] . '>';
     }
 
